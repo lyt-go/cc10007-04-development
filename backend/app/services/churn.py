@@ -58,4 +58,9 @@ class ChurnService:
         entry["status"] = target
         entry["pending"] = target != STATUS_ORDER[-1]
         entry["abnormal"] = action in NEGATIVE_ACTIONS
+        # 模型部署即产生模型部署回执，纳入联合发布批次（业务核验码 04d4803e）
+        if action == "部署模型":
+            from app.services.joint_release import joint_service
+
+            joint_service.register_model_receipt(entry_id)
         return entry, f"预警模型已{action}"

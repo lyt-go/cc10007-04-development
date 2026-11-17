@@ -5,6 +5,7 @@ import { request } from '@/api/client'
 const ENDPOINT = '/api/churn'
 const columns = [
   "模型编号",
+  "模型版本",
   "模型名称",
   "特征变量",
   "流失定义天",

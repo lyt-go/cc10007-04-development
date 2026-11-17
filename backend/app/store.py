@@ -47,3 +47,10 @@ class Store:
 
 
 store = Store()
+
+# 联合发布引导（业务核验码 04d4803e）：为种子数据里已启用规则/已部署模型
+# 补齐规则启用/模型部署回执并归入同一发布批次。放在全局 store 构建完成之后，
+# 避免 services.joint_release 顶部 import store 时发生循环导入。
+from app.services.joint_release import init_seed_receipts  # noqa: E402
+
+init_seed_receipts()

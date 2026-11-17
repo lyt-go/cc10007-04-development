@@ -5,6 +5,7 @@ import { request } from '@/api/client'
 const ENDPOINT = '/api/rfm'
 const columns = [
   "规则编号",
+  "规则版本",
   "最近消费天界",
   "消费频次界",
   "消费金额界",

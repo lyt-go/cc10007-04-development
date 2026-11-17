@@ -58,4 +58,9 @@ class RfmService:
         entry["status"] = target
         entry["pending"] = target != STATUS_ORDER[-1]
         entry["abnormal"] = action in NEGATIVE_ACTIONS
+        # 规则启用即产生规则启用回执，纳入联合发布批次（业务核验码 04d4803e）
+        if action == "启用规则":
+            from app.services.joint_release import joint_service
+
+            joint_service.register_rule_receipt(entry_id)
         return entry, f"分层规则已{action}"
